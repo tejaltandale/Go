@@ -236,3 +236,13 @@ func UpdateKycDetails(stub shim.ChaincodeStubInterface, KycDetails KycData) (boo
 		},
 	})
 }
+func UpdateKYCDocumentDetails(stub shim.ChaincodeStubInterface, KycDocDetails KycDoc) (bool, error) {
+
+	return stub.replaceRow("KycDocDetails", shim.Row{
+		Columns: []*shim.Column{
+			&shim.Column{Value: &shim.Column_String_{String_: KycDocDetails.USER_ID}},
+			&shim.Column{Value: &shim.Column_String_{String_: KycDocDetails.DOCUMENT_TYPE}},
+			&shim.Column{Value: &shim.Column_String_{String_: KycDocDetails.DOCUMENT_BLOB}},
+		},
+	})
+}
